@@ -1,0 +1,23 @@
+import 'package:flutter/material.dart';
+
+class NavigationRouter {
+  static void switchToLogin(BuildContext context) {
+    Navigator.pushNamed(context, "/LoginScreen");
+  }
+
+  static void switchToRegistration(BuildContext context) {
+    Navigator.pushNamed(context, "/RegistrationScreen");
+  }
+
+  static void switchToIntro(BuildContext context) {
+    Navigator.pushNamed(context, "/IntroScreen");
+  }
+
+  static void switchToHome(BuildContext context) {
+    Navigator.pushNamed(context, "/HomeScreen");
+  }
+
+  static void switchToProfile(BuildContext context) {
+    Navigator.pushNamed(context, "/ProfileScreen");
+  }
+}
