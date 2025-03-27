@@ -14,7 +14,7 @@ import 'package:image_picker/image_picker.dart';
 class KycFormScreen extends StatelessWidget {
   final int initialStep;
 
-  KycFormScreen({required this.initialStep});
+  const KycFormScreen({required this.initialStep});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +33,7 @@ class StepIndicator extends StatelessWidget {
   final bool isActive;
   final bool isCompleted;
 
-  StepIndicator({
+  const StepIndicator({super.key, 
     required this.stepNumber,
     required this.title,
     required this.isActive,
@@ -195,7 +195,7 @@ class _MultiStepFormState extends State<MultiStepForm> {
     List.generate(6, (_) => TextEditingController());
     final List<FocusNode> _otpFocusNodes =
     List.generate(6, (_) => FocusNode());
-    bool _isLoading = false; // Track loading state
+    bool _isLoading = false; 
 
     showDialog(
       context: context,

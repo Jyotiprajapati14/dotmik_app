@@ -15,7 +15,7 @@ import 'package:share_me/share_me.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 
 class HomeBottomNavBar extends StatefulWidget {
-  const HomeBottomNavBar({Key? key}) : super(key: key);
+  const HomeBottomNavBar({super.key});
 
   @override
   State<HomeBottomNavBar> createState() => _HomeBottomNavBarState();
@@ -85,11 +85,11 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
         ),
         RefreshIndicator(
           onRefresh: _refreshData,
-          child: WalletScreen(),
+          child: const WalletScreen(),
         ),
         RefreshIndicator(
           onRefresh: _refreshData,
-          child: SettingScreen(),
+          child: const SettingScreen(),
         ),
       ];
 
@@ -135,12 +135,12 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                   ),
                 )
               : GestureDetector(
-                  child: Icon(Icons.arrow_back),
+                  child: const Icon(Icons.arrow_back),
                   onTap: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => HomeBottomNavBar(),
+                        builder: (context) => const HomeBottomNavBar(),
                       ),
                     );
                   },
@@ -150,11 +150,11 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                   child: TextField(
                     controller: _controller,
                     autofocus: true,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       hintText: 'Search',
                       border: InputBorder.none,
                     ),
-                    style: TextStyle(color: Colors.black),
+                    style: const TextStyle(color: Colors.black),
                     textInputAction: TextInputAction.search,
                     onSubmitted: (value) {
                       debugPrint('Search submitted: $value');
@@ -179,7 +179,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                     width: 35.33,
                     height: 35,
                     decoration: ShapeDecoration(
-                      color: Color(0x3FA4A9AE),
+                      color: const Color(0x3FA4A9AE),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(23.50),
                       ),
@@ -190,7 +190,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 ),
                 GestureDetector(
@@ -198,7 +198,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => NotificationScreen()),
+                            builder: (context) => const NotificationScreen()),
                       );
                     },
                     child: !_isSearching
@@ -206,18 +206,18 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                             width: 35.33,
                             height: 35,
                             decoration: ShapeDecoration(
-                              color: Color(0x3FA4A9AE),
+                              color: const Color(0x3FA4A9AE),
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(23.50),
                               ),
                             ),
-                            child: Icon(
+                            child: const Icon(
                               Icons.notification_add_outlined,
                               size: 20,
                             ),
                           )
                         : Container()),
-                SizedBox(
+                const SizedBox(
                   width: 10,
                 )
               ],
@@ -225,11 +225,11 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
           ],
         );
       case 1: // Report Screen
-        return CustomAppBar(titleText: "Report");
+        return const CustomAppBar(titleText: "Report");
       case 2: // Wallet Screen
-        return CustomAppBar(titleText: "Wallet");
+        return const CustomAppBar(titleText: "Wallet");
       case 3: // Settings Screen
-        return CustomAppBar(titleText: "Setting");
+        return const CustomAppBar(titleText: "Setting");
       default:
         return AppBar();
     }
@@ -242,16 +242,16 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
         bool shouldClose = await showDialog(
           context: context,
           builder: (context) => AlertDialog(
-            title: Text('Exit App'),
-            content: Text('Do you really want to exit the app?'),
+            title: const Text('Exit App'),
+            content: const Text('Do you really want to exit the app?'),
             actions: [
               TextButton(
                 onPressed: () => Navigator.of(context).pop(false),
-                child: Text('No'),
+                child: const Text('No'),
               ),
               TextButton(
                 onPressed: () => Navigator.of(context).pop(true),
-                child: Text('Yes'),
+                child: const Text('Yes'),
               ),
             ],
           ),
@@ -272,13 +272,13 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
           backgroundColor: AppColors.red,
           foregroundColor: Colors.white,
           tooltip: 'Add',
-          child: Icon(Icons.add, size: 32),
-          shape: CircleBorder(),
+          child: const Icon(Icons.add, size: 32),
+          shape: const CircleBorder(),
         ),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         bottomNavigationBar: BottomAppBar(
           color: Colors.white,
-          shape: CircularNotchedRectangle(),
+          shape: const CircularNotchedRectangle(),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
@@ -297,7 +297,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                   ],
                 ),
               ),
-              SizedBox(width: 35),
+              const SizedBox(width: 35),
               InkWell(
                 onTap: () {
                   setState(() {
@@ -313,7 +313,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                   ],
                 ),
               ),
-              SizedBox(width: 80),
+              const SizedBox(width: 80),
               InkWell(
                 onTap: () {
                   setState(() {
@@ -329,7 +329,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                   ],
                 ),
               ),
-              SizedBox(width: 25),
+              const SizedBox(width: 25),
               InkWell(
                 onTap: () {
                   setState(() {
@@ -365,16 +365,16 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
             future: _fetchUserProfile(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return Center(child: CircularProgressIndicator());
+                return const Center(child: CircularProgressIndicator());
               } else if (snapshot.hasError) {
-                return Center(
+                return const Center(
                   child: Text(
                     'Failed to load user data.',
                     style: TextStyle(color: Colors.white),
                   ),
                 );
               } else if (_userData == null || _kycData == null) {
-                return Center(
+                return const Center(
                   child: Text(
                     'No user data available.',
                     style: TextStyle(color: Colors.white),
@@ -402,7 +402,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                         left: 0,
                         right: 0,
                         child: Container(
-                          decoration: BoxDecoration(
+                          decoration: const BoxDecoration(
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(16.0),
                               topRight: Radius.circular(16.0),
@@ -415,11 +415,11 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: <Widget>[
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                   Center(
                                     child: Text(
                                       userName,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Color(0xFF23303B),
                                         fontSize: 26,
                                         fontFamily: 'Montserrat',
@@ -427,11 +427,11 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 5),
+                                  const SizedBox(height: 5),
                                   Center(
                                     child: Text(
                                       userId,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         color: Color(0xFF4E4C4C),
                                         fontSize: 16,
                                         fontFamily: 'Poppins',
@@ -439,15 +439,15 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   Center(
                                     child: Container(
                                       width: 210,
-                                      padding: EdgeInsets.symmetric(
+                                      padding: const EdgeInsets.symmetric(
                                           horizontal: 10, vertical: 10),
                                       decoration: BoxDecoration(
                                         color:
-                                            Color(0xFF1CCD9D).withOpacity(0.15),
+                                            const Color(0xFF1CCD9D).withOpacity(0.15),
                                         borderRadius: BorderRadius.circular(10),
                                       ),
                                       child: Padding(
@@ -455,7 +455,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                             const EdgeInsets.only(left: 10),
                                         child: Row(
                                           children: [
-                                            Text(
+                                            const Text(
                                               'KYC Status: ',
                                               style: TextStyle(
                                                 color: Color(0xFF13C999),
@@ -466,7 +466,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                             ),
                                             Text(
                                               kycStatus,
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 color: Color(0xFF13C999),
                                                 fontSize: 16,
                                                 fontFamily: 'Montserrat',
@@ -478,7 +478,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                       ),
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                   // Row(
                                   //   mainAxisAlignment:
                                   //       MainAxisAlignment.spaceBetween,
@@ -508,12 +508,12 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                   // ),
                                   // SizedBox(height: 10),
                                   Image.asset("assets/intro/line.png"),
-                                  SizedBox(height: 10),
+                                  const SizedBox(height: 10),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceBetween,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Total Earning',
                                         style: TextStyle(
                                           color: Color(0xFF23303B),
@@ -525,7 +525,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                       ),
                                       Text(
                                         '₹ $totalEarnings',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                           color: Colors.black,
                                           fontSize: 20,
                                           fontFamily: 'Poppins',
@@ -536,8 +536,8 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 20),
-                                  Text(
+                                  const SizedBox(height: 20),
+                                  const Text(
                                     'Share Profile',
                                     style: TextStyle(
                                       color: Color(0xFF23303B),
@@ -547,7 +547,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                       height: 0,
                                     ),
                                   ),
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                   Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceAround,
@@ -586,7 +586,7 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
                                       ),
                                     ],
                                   ),
-                                  SizedBox(height: 20),
+                                  const SizedBox(height: 20),
                                 ],
                               ),
                             ),

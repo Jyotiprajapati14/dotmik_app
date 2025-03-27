@@ -1,13 +1,14 @@
 import 'package:dotmik_app/api/dmtService.dart';
 import 'package:dotmik_app/api/fundTranferService.dart';
 import 'package:dotmik_app/utils/Appbar/appbarUtils.dart';
-import 'package:dotmik_app/utils/customAppBar.dart';
 import 'package:dotmik_app/utils/custome_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class FundTranferLoginFormScreen extends StatefulWidget {
+  const FundTranferLoginFormScreen({super.key});
+
   @override
   _FormScreenState createState() => _FormScreenState();
 }
@@ -20,7 +21,7 @@ class _FormScreenState extends State<FundTranferLoginFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         titleText: 'Login',
       ),
       body: SingleChildScrollView(
@@ -28,7 +29,7 @@ class _FormScreenState extends State<FundTranferLoginFormScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               width: 351,
               height: 33,
               child: Text(
@@ -42,19 +43,19 @@ class _FormScreenState extends State<FundTranferLoginFormScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             TextField(
               controller: mobileController,
               decoration: InputDecoration(
                 hintText: 'Enter Mobile Number',
-                hintStyle: TextStyle(
+                hintStyle: const TextStyle(
                   color: Colors.grey,
                 ),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8),
                 ),
               ),
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
               ),
               keyboardType: TextInputType.number,
@@ -63,7 +64,7 @@ class _FormScreenState extends State<FundTranferLoginFormScreen> {
                 LengthLimitingTextInputFormatter(10),
               ],
             ),
-            SizedBox(height: 50.0),
+            const SizedBox(height: 50.0),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -87,7 +88,7 @@ class _FormScreenState extends State<FundTranferLoginFormScreen> {
                         } catch (e) {
                           // Handle error
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(
+                            const SnackBar(
                               content: Text('An error occurred'),
                             ),
                           );
@@ -127,6 +128,8 @@ class _FormScreenState extends State<FundTranferLoginFormScreen> {
 }
 
 class RemitterRegisterFormScreen extends StatefulWidget {
+  const RemitterRegisterFormScreen({super.key});
+
   @override
   _FormCashScreenState createState() => _FormCashScreenState();
 }
@@ -142,7 +145,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         titleText: 'Register',
       ),
       body: SingleChildScrollView(
@@ -150,7 +153,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               width: 351,
               height: 33,
               child: Text(
@@ -164,35 +167,35 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             _buildTextField(
                 label: 'First Name',
                 hintText: 'Enter First Name',
                 keyboardType: TextInputType.text,
                 controller: firstNameController,
                 maxLength: 25),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             _buildTextField(
                 label: 'Last Name',
                 hintText: 'Enter First Name',
                 keyboardType: TextInputType.text,
                 controller: lastNameController,
                 maxLength: 25),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             _buildTextField(
                 label: 'Mobile Number',
                 hintText: 'Enter Mobile Number',
                 keyboardType: TextInputType.number,
                 controller: mobileController,
                 maxLength: 10),
-            SizedBox(height: 10.0),
+            const SizedBox(height: 10.0),
             _buildTextField(
                 label: 'Pin Code',
                 hintText: 'Enter Pin Code',
                 keyboardType: TextInputType.number,
                 controller: pinCodeController,
                 maxLength: 6),
-            SizedBox(height: 20.0),
+            const SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -230,7 +233,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
                       } catch (e) {
                         // Handle error
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
+                          const SnackBar(
                             content: Text('An error occurred'),
                           ),
                         );
@@ -250,7 +253,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
                     BorderRadius: BorderRadius.circular(5),
                     text: 'Reset',
                     onPressed: () {},
-                    color: Color.fromARGB(255, 229, 208, 20),
+                    color: const Color.fromARGB(255, 229, 208, 20),
                   ),
                 ),
               ],
@@ -268,8 +271,8 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          titlePadding: EdgeInsets.all(8.0),
-          contentPadding: EdgeInsets.all(8.0),
+          titlePadding: const EdgeInsets.all(8.0),
+          contentPadding: const EdgeInsets.all(8.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -281,7 +284,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 'Enter OTP',
                 style: TextStyle(
@@ -295,7 +298,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
           ),
           content: Container(
             width: double.infinity,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxWidth: 800,
               minWidth: 300,
             ),
@@ -307,7 +310,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
                   PinCodeTextField(
                     controller: _otpController,
                     appContext: context,
-                    pastedTextStyle: TextStyle(
+                    pastedTextStyle: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),
@@ -341,9 +344,9 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
                       // Handle OTP change if needed
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   if (_isLoading)
-                    Center(
+                    const Center(
                         child:
                             CircularProgressIndicator()), // Show loading spinner
                   CustomNormalButton(
@@ -357,7 +360,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
                       setState(() {
                         _isLoading = false; // Set loading to false
                       });
-                      await Future.delayed(Duration(milliseconds: 500));
+                      await Future.delayed(const Duration(milliseconds: 500));
                       Navigator.pop(context);
                     },
                   ),
@@ -382,16 +385,16 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF263238),
             fontSize: 14,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(height: 6.0),
+        const SizedBox(height: 6.0),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(5.0),
@@ -422,7 +425,7 @@ class _FormCashScreenState extends State<RemitterRegisterFormScreen> {
         return AlertDialog(
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-          title: Center(
+          title: const Center(
               child: Text("Submit OTP", style: TextStyle(color: Colors.red))),
           content: Text(description),
           actions: [

@@ -158,8 +158,7 @@ class ApiService {
     }
   }
 
-  Future<void> fetchDashboard(
-      BuildContext context, String token, String key) async {
+  Future<void> fetchDashboard(BuildContext context, String token, String key) async {
     final url = Uri.parse('$baseUrl/dashboard');
 
     try {
@@ -217,9 +216,10 @@ class ApiService {
           case 'dashboard':
             message = 'KYC process completed successfully.';
             Navigator.push(
+              // ignore: use_build_context_synchronously
               context,
               MaterialPageRoute(
-                builder: (context) => HomeBottomNavBar(),
+                builder: (context) => const HomeBottomNavBar(),
               ),
             );
             break;
@@ -245,6 +245,7 @@ class ApiService {
           case 'kyc_form':
             message = 'You need to complete the KYC form.';
             Navigator.push(
+              // ignore: use_build_context_synchronously
               context,
               MaterialPageRoute(
                 builder: (context) => KycFormScreen(initialStep: 1),
@@ -288,7 +289,7 @@ class ApiService {
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(
-            builder: (context) => LoginScreen(),
+            builder: (context) => const LoginScreen(),
           ),
         );
       }
@@ -297,7 +298,7 @@ class ApiService {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => LoginScreen(),
+          builder: (context) => const LoginScreen(),
         ),
       );
     }
@@ -365,6 +366,7 @@ class ApiService {
   Future kycOtpverify(
     String otp,
   ) async {
+    // ignore: unused_local_variable
     Helper helper = Helper();
     final url = Uri.parse('$baseUrl/kyc/verification/verifyByOtp');
     var request = http.MultipartRequest('POST', url);
@@ -419,7 +421,7 @@ class ApiService {
 
     if (token != null && authKey != null) {
       request.headers['token'] = token;
-      request.headers['key'] = authKey;
+      request.headers['key'] = authKey; 
     }
     //
     // Function to compress image

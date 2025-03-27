@@ -5,11 +5,13 @@ import 'package:dotmik_app/utils/appColors.dart';
 import 'package:flutter/material.dart';
 
 class CompleteScreen extends StatelessWidget {
+  const CompleteScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 3), () {
+    Timer(const Duration(seconds: 3), () {
       Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => LoginScreen()),
+        MaterialPageRoute(builder: (context) => const LoginScreen()),
       );
     });
     return Scaffold(
@@ -24,16 +26,16 @@ class CompleteScreen extends StatelessWidget {
               height: 300,
               fit: BoxFit.cover,
             ),
-            SizedBox(height: 40), // Spacer
+            const SizedBox(height: 40), // Spacer
             // Tick icon
-            Icon(
+            const Icon(
               Icons.check_circle,
               color: AppColors.red,
               size: 70,
             ),
-            SizedBox(height: 40), // Spacer
+            const SizedBox(height: 40), // Spacer
             // Text line
-            Text(
+            const Text(
               'Sign Up has successfully done',
               style: TextStyle(
                 color: Colors.black,

@@ -269,14 +269,14 @@ class ExpandableContainer extends StatelessWidget {
   final Map<dynamic, dynamic> data;
 
   const ExpandableContainer({
-    Key? key,
+    super.key,
     required this.data,
     required this.title,
     required this.images,
     required this.titles,
     required this.screensOrLinks,
     required this.encodedCategory,
-  }) : super(key: key);
+  });
 
   void _navigateToScreen(
     BuildContext context,
@@ -320,7 +320,7 @@ class ExpandableContainer extends StatelessWidget {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => Dummyaeps()
+          builder: (context) => const Dummyaeps()
         ),
       );
     } else if (serviceName == 'Broadband Postpaid' || serviceName == 'Electricity' || serviceName == 'Gas' || serviceName == 'LPG GAS' || serviceName == 'Mobile Postpaid' || serviceName == 'Water') {
@@ -359,7 +359,7 @@ class ExpandableContainer extends StatelessWidget {
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                   color: Color.fromARGB(255, 240, 37, 37),
@@ -369,7 +369,7 @@ class ExpandableContainer extends StatelessWidget {
                   'Utility') // Check for 'Utility' title to show 'View More'
                 TextButton(
                   onPressed: () => _navigateToMore(context, 'utility'),
-                  child: Row(
+                  child: const Row(
                     children: [
                       Text(
                         'View More',
@@ -393,8 +393,8 @@ class ExpandableContainer extends StatelessWidget {
         GridView.builder(
           shrinkWrap: true, // To avoid scrolling inside the GridView
           physics:
-              NeverScrollableScrollPhysics(), // Disable scrolling in GridView
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              const NeverScrollableScrollPhysics(), // Disable scrolling in GridView
+          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
             crossAxisCount: 4, // Number of items per row
             crossAxisSpacing: 7.0, // Space between items
             mainAxisSpacing: 10.0, // Space between rows
@@ -445,14 +445,14 @@ class ExpandableContainer extends StatelessWidget {
                             ),
                           ),
                   ),
-                  SizedBox(height: 5),
+                  const SizedBox(height: 5),
                   Padding(
                     padding: const EdgeInsets.all(5.0),
                     child: Text(
                       titles[index],
                       textAlign: TextAlign.center,
                       overflow: TextOverflow.ellipsis,
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 12,
                         fontWeight: FontWeight.bold,
                         color: Colors.black,
@@ -476,6 +476,8 @@ class ExpandableContainer extends StatelessWidget {
 }
 
 class ContinuousTextAnimation extends StatefulWidget {
+  const ContinuousTextAnimation({super.key});
+
   @override
   _ContinuousTextAnimationState createState() =>
       _ContinuousTextAnimationState();
@@ -516,11 +518,11 @@ class _ContinuousTextAnimationState extends State<ContinuousTextAnimation> {
     return Container(
       width: _containerWidth,
       height: 37,
-      decoration: BoxDecoration(color: Color(0xFFC63F3F)),
+      decoration: const BoxDecoration(color: Color(0xFFC63F3F)),
       child: AnimatedContainer(
-        duration: Duration(milliseconds: 0),
+        duration: const Duration(milliseconds: 0),
         transform: Matrix4.translationValues(_position, 0, 0),
-        child: Center(
+        child: const Center(
           child: Text(
             'Welcome to DotMik Software !',
             style: TextStyle(
@@ -574,7 +576,7 @@ class CarouselSliderWidget extends StatelessWidget {
               },
               child: Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 5.0),
+                margin: const EdgeInsets.symmetric(horizontal: 5.0),
                 decoration: ShapeDecoration(
                   image: DecorationImage(
                     image: NetworkImage(imageUrl),
@@ -583,7 +585,7 @@ class CarouselSliderWidget extends StatelessWidget {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  shadows: [
+                  shadows: const [
                     BoxShadow(
                       color: Color(0x05000000),
                       blurRadius: 4,
@@ -603,15 +605,15 @@ class CarouselSliderWidget extends StatelessWidget {
             enableInfiniteScroll: true,
             reverse: false,
             autoPlay: true,
-            autoPlayInterval: Duration(seconds: 3),
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            autoPlayInterval: const Duration(seconds: 3),
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
             autoPlayCurve: Curves.fastOutSlowIn,
             enlargeCenterPage: false, // Changed to false
             scrollDirection: Axis.horizontal,
             onPageChanged: (index, reason) {},
           ),
         ),
-        SizedBox(height: 10),
+        const SizedBox(height: 10),
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: images.asMap().entries.map((entry) {
@@ -620,17 +622,17 @@ class CarouselSliderWidget extends StatelessWidget {
                     width: entry.key == entry.key ? 16 : 32,
                     height: 8,
                     margin:
-                        EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
+                        const EdgeInsets.symmetric(vertical: 10.0, horizontal: 2.0),
                     decoration: ShapeDecoration(
                       color: entry.key == entry.key
-                          ? Color(0xFFC63F3F)
+                          ? const Color(0xFFC63F3F)
                           : Colors.black,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(19),
                       ),
                     ),
                   )
-                : SizedBox(
+                : const SizedBox(
                     height: 10,
                   );
           }).toList(),

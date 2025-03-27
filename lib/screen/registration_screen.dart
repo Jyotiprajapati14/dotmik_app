@@ -9,7 +9,7 @@ import 'package:dotmik_app/utils/custome_button.dart';
 import 'login_screen.dart';
 
 class SignScreen extends StatefulWidget {
-  const SignScreen({Key? key}) : super(key: key);
+  const SignScreen({super.key});
 
   @override
   State<SignScreen> createState() => _SignScreenState();
@@ -67,7 +67,7 @@ class _SignScreenState extends State<SignScreen> {
               Container(
                 decoration: BoxDecoration(
                   color: isDarkMode ? Colors.grey[900] : AppColors.red,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topLeft: Radius.circular(60),
                     topRight: Radius.circular(60),
                   ),
@@ -76,8 +76,8 @@ class _SignScreenState extends State<SignScreen> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    SizedBox(height: 20),
-                    Text(
+                    const SizedBox(height: 20),
+                    const Text(
                       'Hi Welcome !',
                       style: TextStyle(
                         color: Colors.white,
@@ -86,35 +86,35 @@ class _SignScreenState extends State<SignScreen> {
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomTextField(
                       controller: firstNameController,
                       hintText: 'Enter your Name',
                       icon: Icons.person_2_outlined,
                       keyboardType: TextInputType.text,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     CustomTextField(
                       controller: lastNameController,
                       hintText: 'Enter your LastName',
                       icon: Icons.lock_outline,
                       keyboardType: TextInputType.text,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     CustomTextField(
                       controller: emailController,
                       hintText: 'Enter your Email',
                       icon: Icons.email_outlined,
                       keyboardType: TextInputType.text,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     CustomTextField(
                       controller: phoneController,
                       hintText: 'Enter your PhoneNumber',
                       icon: Icons.lock_outline,
                       keyboardType: TextInputType.number,
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     CustomTextField(
                       controller: passwordController,
                       hintText: 'Enter your Password',
@@ -122,16 +122,16 @@ class _SignScreenState extends State<SignScreen> {
                       obscureText: true,
                       keyboardType: TextInputType.visiblePassword,
                     ),
-                    SizedBox(height: 20,),
+                    const SizedBox(height: 20,),
                     CustomTextField(
                         controller: confirmPasswordController,
                         hintText: 'Enter Confirm Password',
                         icon: Icons.lock_outline,
                         obscureText: true,
                         keyboardType: TextInputType.visiblePassword),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     CustomImageButton(
-                      color: Colors.black12,
+                      color: Colors.black,
                       text: 'Sign Up',
                       imagePath: 'assets/intro/chevron-right.png',
                       onPressed: () async {
@@ -142,14 +142,14 @@ class _SignScreenState extends State<SignScreen> {
                             passwordController.text.isEmpty ||
                             confirmPasswordController.text.isEmpty) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Please fill all the fields')),
+                            const SnackBar(content: Text('Please fill all the fields')),
                           );
                           return;
                         }
 
                         if (passwordController.text != confirmPasswordController.text) {
                           ScaffoldMessenger.of(context).showSnackBar(
-                            SnackBar(content: Text('Passwords do not match')),
+                            const SnackBar(content: Text('Passwords do not match')),
                           );
                           return;
                         }
@@ -172,11 +172,11 @@ class _SignScreenState extends State<SignScreen> {
                         }
                       },
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           "Already Have an Account? ",
                           style: TextStyle(
                             color: Colors.white,
@@ -190,11 +190,11 @@ class _SignScreenState extends State<SignScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                builder: (context) => LoginScreen(),
+                                builder: (context) => const LoginScreen(),
                               ),
                             );
                           },
-                          child: Text(
+                          child: const Text(
                             'Log In',
                             style: TextStyle(
                               color: Color(0xFFFFD96E),
@@ -206,7 +206,7 @@ class _SignScreenState extends State<SignScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 10),
+                    const SizedBox(height: 10),
                   ],
                 ),
               ),

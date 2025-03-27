@@ -7,7 +7,7 @@ import 'package:dotmik_app/utils/customTextFied.dart';
 import 'package:dotmik_app/utils/custome_button.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -84,8 +84,8 @@ class _LoginScreenState extends State<LoginScreen> {
                 Flexible(
                   child: Container(
                     decoration: BoxDecoration(
-                      color: isDarkMode ? Colors.grey[900] : AppColors.red,
-                      borderRadius: BorderRadius.only(
+                      color: isDarkMode ? Colors.grey[900] : const Color.fromARGB(255, 245, 76, 76),
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(60),
                         topRight: Radius.circular(60),
                       ),
@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 ),
                                 SizedBox(height: screenHeight * 0.02),
                                 if (isLoading) ...[
-                                  Center(
+                                  const Center(
                                     child: CircularProgressIndicator(),
                                   ),
                                 ] else ...[
@@ -148,7 +148,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                       } catch (e) {
                                         ScaffoldMessenger.of(context)
                                             .showSnackBar(
-                                          SnackBar(
+                                          const SnackBar(
                                             content: Text('An error occurred'),
                                           ),
                                         );
@@ -165,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   children: [
                                     Container(
                                       width: screenWidth * 0.3,
-                                      decoration: ShapeDecoration(
+                                      decoration: const ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
                                             width: 1,
@@ -195,7 +195,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ),
                                     Container(
                                       width: screenWidth * 0.3,
-                                      decoration: ShapeDecoration(
+                                      decoration: const ShapeDecoration(
                                         shape: RoundedRectangleBorder(
                                           side: BorderSide(
                                             width: 1,
@@ -228,14 +228,14 @@ class _LoginScreenState extends State<LoginScreen> {
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => SignScreen(),
+                                            builder: (context) => const SignScreen(),
                                           ),
                                         );
                                       },
                                       child: Text(
                                         'Sign up',
                                         style: TextStyle(
-                                          color: Color(0xFFFFD96E),
+                                          color: const Color(0xFFFFD96E),
                                           fontSize: screenWidth * 0.045,
                                           fontFamily: 'Open Sans',
                                           fontWeight: FontWeight.w700,

@@ -244,7 +244,7 @@ class _WalletScreenState extends State<WalletScreen> {
                       'Search Users / Contact',
                       style: TextStyle(
                         color: Color(0xCC696D78),
-                        fontSize: 13.55,
+                        fontSize: 14.55,
                         fontFamily: 'Poppins',
                         fontWeight: FontWeight.w500,
                         height: 0,
