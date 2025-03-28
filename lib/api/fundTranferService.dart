@@ -51,7 +51,7 @@ class FundTransferService {
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('An error occurred during registration.'),
           duration: Duration(seconds: 2),
         ),
@@ -107,14 +107,14 @@ class FundTransferService {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text('Verification failed: ${data['message']}'),
-              duration: Duration(seconds: 2),
+              duration: const Duration(seconds: 2),
             ),
           );
         }
       } else {
         final responseBody = await response.stream.bytesToString();
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
+          const SnackBar(
             content: Text('An error occurred during verification.'),
             duration: Duration(seconds: 2),
           ),
@@ -122,7 +122,7 @@ class FundTransferService {
       }
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
+        const SnackBar(
           content: Text('An error occurred during verification.'),
           duration: Duration(seconds: 2),
         ),

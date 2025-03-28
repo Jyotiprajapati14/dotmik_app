@@ -1,15 +1,12 @@
-import 'dart:developer';
-
 import 'package:dotmik_app/utils/Appbar/appbarUtils.dart';
 import 'package:flutter/material.dart';
 import 'package:dotmik_app/api/DthService.dart';
-import 'package:dotmik_app/screen/home/dthrecharge/receipt_screen.dart';
-import 'package:dotmik_app/utils/customAppBar.dart';
 import 'package:dotmik_app/utils/custome_button.dart';
 import 'package:dotmik_app/utils/textstyles/customCard.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class RechargeDthScreen extends StatefulWidget {
+  const RechargeDthScreen({super.key});
+
   @override
   _RechargeDthScreenState createState() => _RechargeDthScreenState();
 }
@@ -70,7 +67,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
   Future<void> _initiateTransaction() async {
     if (dthNumber.isEmpty || amount.isEmpty || selectedOperatorCode.isEmpty) {
       // Show error if any field is empty
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Please fill all fields"),
       ));
       return;
@@ -83,7 +80,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
       // Show OTP dialog on successful transaction initiation
       _showOtpTransaction(context);
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: Text("Transaction initiation failed"),
       ));
     }
@@ -99,8 +96,8 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          titlePadding: EdgeInsets.all(8.0),
-          contentPadding: EdgeInsets.all(8.0),
+          titlePadding: const EdgeInsets.all(8.0),
+          contentPadding: const EdgeInsets.all(8.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -112,7 +109,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 'Enter OTP',
                 style: TextStyle(
@@ -126,7 +123,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
           ),
           content: Container(
             width: double.infinity,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxWidth: 800,
               minWidth: 300,
             ),
@@ -154,7 +151,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                                 filled: true,
                                 fillColor: Colors.grey,
                                 contentPadding:
-                                    EdgeInsets.symmetric(horizontal: 10),
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(12),
                                   borderSide: BorderSide.none,
@@ -173,16 +170,16 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                                   }
                                 }
                               },
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.black,
                               )),
                         ),
                       );
                     }),
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   if (_isLoading)
-                    Center(
+                    const Center(
                         child:
                             CircularProgressIndicator()), // Show loading spinner
                   CustomNormalButton(
@@ -199,7 +196,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                         _isLoading = false; // Set loading to false
                       });
 
-                      await Future.delayed(Duration(milliseconds: 500));
+                      await Future.delayed(const Duration(milliseconds: 500));
                       Navigator.pop(context);
                     },
                   ),
@@ -215,17 +212,17 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(
+      appBar: const CustomAppBar(
         titleText: 'Dth Recharge',
       ),
       body: isLoading
-          ? Center(child: CircularProgressIndicator())
+          ? const Center(child: CircularProgressIndicator())
           : SingleChildScrollView(
               padding: const EdgeInsets.all(25.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: <Widget>[
-                  SizedBox(
+                  const SizedBox(
                     width: 351,
                     height: 33,
                     child: Text(
@@ -239,7 +236,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   _buildTextField(
                     label: 'Phone Number',
                     hintText: 'Enter phone Number',
@@ -254,7 +251,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                       // }
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   DropdownButtonFormField<String>(
                     value: selectedOperator,
                     decoration: InputDecoration(
@@ -262,9 +259,9 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(12.0),
                       ),
-                      contentPadding: EdgeInsets.symmetric(horizontal: 16.0),
+                      contentPadding: const EdgeInsets.symmetric(horizontal: 16.0),
                     ),
-                    hint: Text('Select Operator'),
+                    hint: const Text('Select Operator'),
                     onChanged: (String? newValue) {
                       setState(() {
                         selectedOperator = newValue;
@@ -285,8 +282,8 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                     }).toList(),
                   ),
 
-                  SizedBox(height: 20.0),
-                  Text(
+                  const SizedBox(height: 20.0),
+                  const Text(
                     'Enter Amount',
                     style: TextStyle(
                       color: Color(0xFFC63F3F),
@@ -296,7 +293,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                       height: 0,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   _buildTextField(
                     label: '',
                     hintText: 'Enter Amount',
@@ -307,7 +304,7 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
                       });
                     },
                   ),
-                  SizedBox(height: 20),
+                  const SizedBox(height: 20),
                   SizedBox(
                     height: 50,
                     child: CustomTextButton(
@@ -335,16 +332,16 @@ class _RechargeDthScreenState extends State<RechargeDthScreen> {
         if (label.isNotEmpty)
           Text(
             label,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xFF263238),
               fontSize: 14,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w500,
             ),
           ),
-        if (label.isNotEmpty) SizedBox(height: 6.0),
+        if (label.isNotEmpty) const SizedBox(height: 6.0),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(5.0),

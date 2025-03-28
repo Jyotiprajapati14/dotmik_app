@@ -71,7 +71,6 @@ class _HomeBottomNavBarState extends State<HomeBottomNavBar> {
   }
 
   int _page = 0;
-
   List<Widget> get screens => [
         RefreshIndicator(
           onRefresh: _refreshData,

@@ -1,5 +1,4 @@
 import 'package:dotmik_app/utils/Appbar/appbarUtils.dart';
-import 'package:dotmik_app/utils/customAppBar.dart';
 import 'package:flutter/material.dart';
 
 class TransactionReceiptScreen extends StatelessWidget {
@@ -14,7 +13,7 @@ class TransactionReceiptScreen extends StatelessWidget {
   final String status;
   final double availableAmount;
 
-  TransactionReceiptScreen({
+  const TransactionReceiptScreen({
     required this.phoneNumber,
     required this.accountNumber,
     required this.ifscCode,
@@ -30,7 +29,7 @@ class TransactionReceiptScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: CustomAppBar(titleText: 'Transaction Details',),
+     appBar: const CustomAppBar(titleText: 'Transaction Details',),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Container(
@@ -39,7 +38,7 @@ class TransactionReceiptScreen extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32),
           clipBehavior: Clip.antiAlias,
           decoration: ShapeDecoration(
-            color: Color.fromARGB(255, 252, 230, 199),
+            color: const Color.fromARGB(255, 252, 230, 199),
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(12),
             ),
@@ -47,10 +46,10 @@ class TransactionReceiptScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              Center(
+              const Center(
                 child: Text(
                   'Transaction Receipt',
                   textAlign: TextAlign.center,
@@ -63,12 +62,12 @@ class TransactionReceiptScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
                 width: 397,
-                decoration: ShapeDecoration(
+                decoration: const ShapeDecoration(
                   shape: RoundedRectangleBorder(
                     side: BorderSide(
                       width: 1,
@@ -78,7 +77,7 @@ class TransactionReceiptScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               _buildRow('Phone', phoneNumber),
@@ -91,7 +90,7 @@ class TransactionReceiptScreen extends StatelessWidget {
               _buildRow('UTR', utr),
               _buildRow('Status', status),
               _buildRow('Available Amount', availableAmount.toString()),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Center(
@@ -102,7 +101,7 @@ class TransactionReceiptScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
                   decoration: ShapeDecoration(
                     shape: RoundedRectangleBorder(
-                      side: BorderSide(width: 1, color: Color(0x72616161)),
+                      side: const BorderSide(width: 1, color: Color(0x72616161)),
                       borderRadius: BorderRadius.circular(6),
                     ),
                   ),
@@ -124,7 +123,7 @@ class TransactionReceiptScreen extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(width: 10),
-                      Text(
+                      const Text(
                         'Get PDF Receipt',
                         textAlign: TextAlign.center,
                         style: TextStyle(
@@ -139,7 +138,7 @@ class TransactionReceiptScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
             ],

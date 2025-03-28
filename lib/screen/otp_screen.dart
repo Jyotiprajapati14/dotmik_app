@@ -61,7 +61,7 @@ class _OtpScreenState extends State<OtpScreen> {
     startTimer();
     _otpController.clear();
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('OTP has been resent')),
+      const SnackBar(content: Text('OTP has been resent')),
     );
     // Implement OTP resend functionality if needed
   }
@@ -84,7 +84,7 @@ class _OtpScreenState extends State<OtpScreen> {
           child: Container(
             height: screenHeight,
             width: screenWidth,
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: Column(
               children: <Widget>[
                 Stack(
@@ -106,7 +106,7 @@ class _OtpScreenState extends State<OtpScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                          top: screenHeight * 0.10,
+                          top: screenHeight * 0.12,
                           bottom: screenHeight * 0.05),
                       child: Center(
                         child: Container(
@@ -128,7 +128,7 @@ class _OtpScreenState extends State<OtpScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                         color: isDarkMode ? Colors.grey[900] : Colors.red,
-                        borderRadius: BorderRadius.only(
+                        borderRadius: const BorderRadius.only(
                           topLeft: Radius.circular(60),
                           topRight: Radius.circular(60),
                         )),
@@ -138,9 +138,9 @@ class _OtpScreenState extends State<OtpScreen> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           const SizedBox(height: 30),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                                top: 8, bottom: 8, left: 10),
+                          const Padding(
+                            padding: EdgeInsets.only(
+                                top: 7, bottom: 7, left: 10),
                             child: Text.rich(
                               TextSpan(
                                 children: [
@@ -158,7 +158,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                         'A 6-digit code has been sent to your number',
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 16,
+                                      fontSize: 14,
                                       fontFamily: 'Open Sans',
                                       fontWeight: FontWeight.w400,
                                     ),
@@ -167,15 +167,15 @@ class _OtpScreenState extends State<OtpScreen> {
                               ),
                             ),
                           ),
-                          const SizedBox(height: 10),
+                          const SizedBox(height: 8),
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text(
                                 '00:$_start',
-                                style: TextStyle(
+                                style: const TextStyle(
                                   color: Colors.white,
-                                  fontSize: 18,
+                                  fontSize: 16,
                                 ),
                               ),
                             ],
@@ -184,7 +184,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           PinCodeTextField(
                             controller: _otpController,
                             appContext: context,
-                            pastedTextStyle: TextStyle(
+                            pastedTextStyle: const TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                             ),
@@ -193,7 +193,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             pinTheme: PinTheme(
                               shape: PinCodeFieldShape.box,
                               borderRadius: BorderRadius.circular(12),
-                              fieldHeight: 50,
+                              fieldHeight: 45,
                               fieldWidth: 40,
                               activeColor: Colors.black,
                               inactiveColor: Colors.black,
@@ -219,14 +219,13 @@ class _OtpScreenState extends State<OtpScreen> {
                               // Handle OTP change if needed
                             },
                           ),
-                          const SizedBox(height: 20),
+                          const SizedBox(height: 10),
                           Stack(
                             children: [
                               MaterialButton(
                                 onPressed: _isSubmitting
                                     ? null
                                     : (
-
                                     ) async {
                                         setState(() {
                                           _isSubmitting = true;
@@ -256,7 +255,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 child: Center(
                                   child: _isSubmitting
                                       ? null
-                                      : Text(
+                                      : const Text(
                                           "Verify",
                                           style: TextStyle(
                                             color: Colors.white,
@@ -267,7 +266,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 ),
                               ),
                               if (_isSubmitting)
-                                Center(
+                                const Center(
                                   child: SizedBox(
                                     height: 50,
                                     width: double.infinity,
@@ -284,7 +283,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 "If you don't receive a code! ",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -294,7 +293,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               ),
                               GestureDetector(
                                 onTap: _handleResend,
-                                child: Text(
+                                child: const Text(
                                   'Resend',
                                   style: TextStyle(
                                     color: Color(0xFFFFD96E),
@@ -311,7 +310,7 @@ class _OtpScreenState extends State<OtpScreen> {
                             children: [
                               Container(
                                 width: screenWidth * 0.3,
-                                decoration: ShapeDecoration(
+                                decoration: const ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       width: 1,
@@ -339,7 +338,7 @@ class _OtpScreenState extends State<OtpScreen> {
                               ),
                               Container(
                                 width: screenWidth * 0.3,
-                                decoration: ShapeDecoration(
+                                decoration: const ShapeDecoration(
                                   shape: RoundedRectangleBorder(
                                     side: BorderSide(
                                       width: 1,
@@ -355,7 +354,7 @@ class _OtpScreenState extends State<OtpScreen> {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
-                              Text(
+                              const Text(
                                 "If you want Login Again! ",
                                 style: TextStyle(
                                   color: Colors.white,
@@ -367,7 +366,7 @@ class _OtpScreenState extends State<OtpScreen> {
                                 onTap: () {
                                   Navigator.pushNamed(context, '/login_screen');
                                 },
-                                child: Text(
+                                child: const Text(
                                   'Login',
                                   style: TextStyle(
                                     color: Color(0xFFFFD96E),

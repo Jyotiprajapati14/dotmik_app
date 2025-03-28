@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
@@ -83,69 +84,171 @@ class ApiService {
     }
   }
 
-  Future<void> logInOtp(String otpCode, BuildContext context) async {
-    final url = Uri.parse('$baseUrl/authentication/verifyLogin');
-    var request = http.MultipartRequest('POST', url);
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    Helper helper = Helper();
-    String androidId = await helper.getAndroidId();
-    String androidName = await helper.getAndroidName();
-    Map<String, double> location = await helper.getCurrentLocation(context);
-    dynamic? key = prefs.getString('key');
+  // Future<void> logInOtp(String otpCode, BuildContext context) async {
+  //   final url = Uri.parse('$baseUrl/authentication/verifyLogin');
+  //   var request = http.MultipartRequest('POST', url);
+  //   SharedPreferences prefs = await SharedPreferences.getInstance();
+  //   Helper helper = Helper();
+  //   String androidId = await helper.getAndroidId();
+  //   String androidName = await helper.getAndroidName();
+  //   Map<String, double> location = await helper.getCurrentLocation(context);
+  //   dynamic? key = prefs.getString('key');
 
-    request.fields.addAll({
-      'code': otpCode,
-      'lat': '${location['latitude']}',
-      'log': '${location['longitude']}',
-      'key': '$key',
-      'device_token': '$androidId',
-      'device_name': '$androidName',
+  //   request.fields.addAll({
+  //     'code': otpCode,
+  //     'lat': '${location['latitude']}',
+  //     'log': '${location['longitude']}',
+  //     'key': '$key',
+  //     'device_token': '$androidId',
+  //     'device_name': '$androidName',
+  //   });
+
+  //   try {
+  //     http.StreamedResponse response = await request.send();
+
+  //     final responseBody = await response.stream.bytesToString();
+  //     final data = jsonDecode(responseBody);
+  //     print(data);
+  //     print("Response data: $data" );
+
+  //     if (data['status'] == 'SUCCESS') {
+  //       print(" print response data: $data"  );
+  //       await prefs.setString('key', data['key'] ?? '');
+  //       await prefs.setBool('logout', data['logout'] ?? false);
+
+  //       // Debugging: Print the saved values
+  //       String? savedKey = prefs.getString('key');
+  //       bool? savedLogout = prefs.getBool('logout');
+
+  //       String token = data['data']['authentication']['token'] ?? '';
+  //       String authKey = data['data']['authentication']['key'] ?? '';
+
+  //       // Ensure token and authKey are not null before encryption
+  //       if (token.isNotEmpty && authKey.isNotEmpty) {
+  //         String encryptedToken = _encrypt(token);
+  //         String encryptedAuthKey = _encrypt(authKey);
+
+  //         await prefs.setString('token', encryptedToken);
+  //         await prefs.setString('Authkey', encryptedAuthKey);
+  //         String? Token = prefs.getString('token');
+  //         String? AuthKey = prefs.getString('Authkey');
+  //         fetchDashboard(context, '$Token', '$AuthKey');
+  //       } else {
+  //         Navigator.push(
+  //             context, MaterialPageRoute(builder: (context) => LoginScreen()));
+  //         NotifierUtils.showSnackBar(context, 'Invalid response data',
+  //             isError: true);
+  //       }
+  //     } else {
+  //       NotifierUtils.showSnackBar(context, 'Login failed: ${data['message']}',
+  //           isError: true);
+  //     }
+  //   } catch (e) {
+  //     NotifierUtils.showSnackBar(context, 'An error occurred', isError: true);
+  //   }
+  // }
+
+
+Future<void> logInOtp(String otpCode, BuildContext context) async {
+  final url = Uri.parse('$baseUrl/authentication/verifyLogin');
+  var request = http.MultipartRequest('POST', url);
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  Helper helper = Helper();
+  String androidId = await helper.getAndroidId();
+  String androidName = await helper.getAndroidName();
+  Map<String, double> location = await helper.getCurrentLocation(context);
+  dynamic? key = prefs.getString('key');
+
+  request.fields.addAll({
+    'code': otpCode,
+    'lat': '${location['latitude']}',
+    'log': '${location['longitude']}',
+    'key': '$key',
+    'device_token': '$androidId',
+    'device_name': '$androidName',
+  });
+
+  try {
+    http.StreamedResponse response = await request.send();
+    final responseBody = await response.stream.bytesToString();
+    final data = jsonDecode(responseBody);
+    print("Response data: $data");
+
+    if (data['status'] == 'SUCCESS') {
+      await prefs.setString('key', data['key'] ?? '');
+      await prefs.setBool('logout', data['logout'] ?? false);
+
+      String kycStatus = 'pending';
+      if (data['data'].containsKey('user') && data['data']['user'] != null) {
+        kycStatus = data['data']['user']['kyc_status'] ?? 'pending';
+      }
+
+      String token = data['data']['authentication']['token'] ?? '';
+      String authKey = data['data']['authentication']['key'] ?? '';
+
+      if (token.isNotEmpty && authKey.isNotEmpty) {
+        String encryptedToken = _encrypt(token);
+        String encryptedAuthKey = _encrypt(authKey);
+        await prefs.setString('token', encryptedToken);
+        await prefs.setString('Authkey', encryptedAuthKey);
+
+        Future.delayed(Duration.zero, () {
+          if (kycStatus == 'approved') {
+            print("Navigating to KYC Form...");
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => KycFormScreen(initialStep: 1)),
+            );
+          } else {
+            print("Navigating to KYC Pending...");
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(builder: (context) => const KycPendingScreen()),
+            );
+          }
+        });
+      } else {
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const LoginScreen()),
+        );
+        NotifierUtils.showSnackBar(context, 'Invalid response data', isError: true);
+      }
+    } else {
+      NotifierUtils.showSnackBar(context, 'Login failed: ${data['message']}', isError: true);
+    }
+  } catch (e) {
+    NotifierUtils.showSnackBar(context, 'An error occurred', isError: true);
+    print("Error: $e");
+  }
+}
+
+void startKycStatusCheck(BuildContext context) {
+  Timer.periodic(Duration(seconds: 60), (timer) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String? token = prefs.getString('token');
+
+    final url = Uri.parse('$baseUrl/user/checkKycStatus');
+    var response = await http.get(url, headers: {
+      "Authorization": "Bearer $token",
     });
 
-    try {
-      http.StreamedResponse response = await request.send();
+    final data = jsonDecode(response.body);
+    print("KYC Status Check: $data");
 
-      final responseBody = await response.stream.bytesToString();
-      final data = jsonDecode(responseBody);
-      print(data);
-      print("Response data: $data" );
+    if (data['status'] == 'SUCCESS') {
+      String kycStatus = data['data']['user']['kyc_status'] ?? 'pending';
 
-      if (data['status'] == 'SUCCESS') {
-        print(" print response data: $data"  );
-        await prefs.setString('key', data['key'] ?? '');
-        await prefs.setBool('logout', data['logout'] ?? false);
-
-        // Debugging: Print the saved values
-        String? savedKey = prefs.getString('key');
-        bool? savedLogout = prefs.getBool('logout');
-
-        String token = data['data']['authentication']['token'] ?? '';
-        String authKey = data['data']['authentication']['key'] ?? '';
-
-        // Ensure token and authKey are not null before encryption
-        if (token.isNotEmpty && authKey.isNotEmpty) {
-          String encryptedToken = _encrypt(token);
-          String encryptedAuthKey = _encrypt(authKey);
-
-          await prefs.setString('token', encryptedToken);
-          await prefs.setString('Authkey', encryptedAuthKey);
-          String? Token = prefs.getString('token');
-          String? AuthKey = prefs.getString('Authkey');
-          fetchDashboard(context, '$Token', '$AuthKey');
-        } else {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => LoginScreen()));
-          NotifierUtils.showSnackBar(context, 'Invalid response data',
-              isError: true);
-        }
-      } else {
-        NotifierUtils.showSnackBar(context, 'Login failed: ${data['message']}',
-            isError: true);
+      if (kycStatus == 'approved') {
+        timer.cancel(); //  अगर KYC Approve हो गया तो Timer रोक दो
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => KycFormScreen(initialStep: 1)),
+        );
       }
-    } catch (e) {
-      NotifierUtils.showSnackBar(context, 'An error occurred', isError: true);
     }
-  }
+  });
+}
 
   Future<void> _checkAuth(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -191,7 +294,7 @@ class ApiService {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => KycFormScreen(initialStep: 1),
+                builder: (context) => const KycFormScreen(initialStep: 1),
               ),
             );
             break;
@@ -200,7 +303,7 @@ class ApiService {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => KycFormScreen(initialStep: 2),
+                builder: (context) => const KycFormScreen(initialStep: 2),
               ),
             );
             break;

@@ -421,8 +421,8 @@ class _MultiStepFormState extends State<MultiStepForm> {
           scrollDirection: Axis.vertical,
           child: Column(
             children: [
-              SizedBox(height: 30),
-              Text(
+              const SizedBox(height: 30),
+              const Text(
                 'UPDATE KYC',
                 style: TextStyle(
                   color: AppColors.red,
@@ -435,7 +435,7 @@ class _MultiStepFormState extends State<MultiStepForm> {
               // Steps Indicator
               Container(
                 width: double.infinity,
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
@@ -480,7 +480,7 @@ class _MultiStepFormState extends State<MultiStepForm> {
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),
                   ),
-                  shadows: [
+                  shadows: const [
                     BoxShadow(
                       color: Color(0x3F000000),
                       blurRadius: 10,
@@ -489,22 +489,22 @@ class _MultiStepFormState extends State<MultiStepForm> {
                     )
                   ],
                 ),
-                padding: EdgeInsets.all(20),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Step $_currentStep: ${_currentStep == 1 ? "Personal Information" : (_currentStep == 2 ? "ID Details" : "Shop Details")}',
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: AppColors.red,
                         fontSize: 18,
                         fontFamily: 'Open Sans',
                         fontWeight: FontWeight.w600,
                       ),
                     ),
-                    SizedBox(height: 20),
+                    const SizedBox(height: 20),
                     if (_currentStep == 1) ...[
-                      Text(
+                      const Text(
                         'Email',
                         style: TextStyle(
                           color: Color(0xA51F1F1F),
@@ -513,7 +513,7 @@ class _MultiStepFormState extends State<MultiStepForm> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         height: 10,
                       ),
                       TextField(

@@ -5,25 +5,27 @@ import 'package:flutter/material.dart';
 
 class IntroScreen extends StatelessWidget {
   final List<Introduction> list = [
-    Introduction(
+    const Introduction(
       title: 'Welcome to',
       subTitle: 'Dotmik!',
       detail: 'Browse the menu and order directly from the application',
       imageUrl: 'assets/intro/intro1.png',
     ),
-    Introduction(
+    const Introduction(
       title: 'Great B2b',
       subTitle: 'Experience',
       detail: 'Your order will be immediately collected and',
       imageUrl: 'assets/intro/intro2.png',
     ),
-    Introduction(
+    const Introduction(
       title: 'Send Money ',
       subTitle: 'anytime,& anywhere',
       detail: 'Pick up delivery at your door and enjoy groceries',
       imageUrl: 'assets/intro/intro3.png',
     ),
   ];
+
+   IntroScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +35,7 @@ class IntroScreen extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => StartScreen(),
+            builder: (context) => const StartScreen(),
           ),
         );
       },

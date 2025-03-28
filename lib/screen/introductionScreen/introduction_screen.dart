@@ -42,7 +42,7 @@ class _IntroScreenOnboardingState extends State<IntroScreenOnboarding> {
         child: Container(
           color: widget.backgroudColor ?? backgroundColor,
           child: Padding(
-            padding: EdgeInsets.symmetric(vertical: 25.0),
+            padding: const EdgeInsets.symmetric(vertical: 25.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -67,7 +67,7 @@ class _IntroScreenOnboardingState extends State<IntroScreenOnboarding> {
                 ),
                 Expanded(
                   child: PageView(
-                    physics: ClampingScrollPhysics(),
+                    physics: const ClampingScrollPhysics(),
                     controller: _pageController,
                     onPageChanged: (int page) {
                       setState(() {
@@ -83,7 +83,7 @@ class _IntroScreenOnboardingState extends State<IntroScreenOnboarding> {
                   indicatorColor: widget.foregroundColor ??
                       (isDarkMode ? Colors.white : Colors.red),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 _customProgress(isDarkMode, contentColor),
               ],
             ),
@@ -123,7 +123,7 @@ class _IntroScreenOnboardingState extends State<IntroScreenOnboarding> {
               onPressed: () {
                 _currentPage != widget.introductionList!.length - 1
                     ? _pageController.nextPage(
-                        duration: Duration(milliseconds: 500),
+                        duration: const Duration(milliseconds: 500),
                         curve: Curves.ease,
                       )
                     : widget.onTapSkipButton!();
@@ -170,7 +170,7 @@ class LinearDotProgressIndicator extends StatelessWidget {
               ? MediaQuery.of(context).size.width * 0.05
               : MediaQuery.of(context).size.width * 0.03,
           height: MediaQuery.of(context).size.height * 0.01,
-          margin: EdgeInsets.symmetric(horizontal: 5),
+          margin: const EdgeInsets.symmetric(horizontal: 5),
           decoration: BoxDecoration(
             shape: BoxShape.rectangle,
             borderRadius: BorderRadius.circular(50),

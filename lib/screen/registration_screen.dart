@@ -89,7 +89,7 @@ class _SignScreenState extends State<SignScreen> {
                     const SizedBox(height: 20),
                     CustomTextField(
                       controller: firstNameController,
-                      hintText: 'Enter your Name',
+                      hintText: 'Enter your First Name',
                       icon: Icons.person_2_outlined,
                       keyboardType: TextInputType.text,
                     ),

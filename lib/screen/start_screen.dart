@@ -8,6 +8,8 @@ import 'package:dotmik_app/utils/textstyles/textstyle.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class StartScreen extends StatefulWidget {
+  const StartScreen({super.key});
+
   @override
   _SplashScreenState createState() => _SplashScreenState();
 }
@@ -21,7 +23,7 @@ class _SplashScreenState extends State<StartScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(Duration(seconds: 5), () => NavigationRouter.switchToIntro(context));
+    Timer(const Duration(seconds: 5), () => NavigationRouter.switchToIntro(context));
   }
 
   @override
@@ -74,7 +76,7 @@ class _SplashScreenState extends State<StartScreen> {
                 width: screenWidth * 0.8,
                 child: Center(
                   child: Image(
-                    image: AssetImage("assets/intro/intro4.png"),
+                    image: const AssetImage("assets/intro/intro4.png"),
                     height: screenHeight * 0.32,
                     fit: BoxFit.fill,
                   ),
@@ -103,7 +105,7 @@ class _SplashScreenState extends State<StartScreen> {
 
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => LoginScreen(),
+                          builder: (context) => const LoginScreen(),
                         ),
                       );
                     }
@@ -112,7 +114,7 @@ class _SplashScreenState extends State<StartScreen> {
                     width: screenWidth * 0.6,
                     height: screenHeight * 0.07,
                     decoration: ShapeDecoration(
-                      gradient: LinearGradient(
+                      gradient: const LinearGradient(
                         begin: Alignment(-0.99, -0.17),
                         end: Alignment(0.99, 0.17),
                         colors: [

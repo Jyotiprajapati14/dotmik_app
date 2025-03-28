@@ -1,7 +1,5 @@
 import 'package:dotmik_app/utils/Appbar/appbarUtils.dart';
-import 'package:dotmik_app/utils/customAppBar.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class ComissionScreen extends StatefulWidget {
   const ComissionScreen({Key? key}) : super(key: key);
@@ -38,19 +36,19 @@ class _ComissionScreenState extends State<ComissionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(titleText: 'Commission',),
+      appBar: const CustomAppBar(titleText: 'Commission',),
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Center(
+                  const Center(
                     child: Text(
                       'Commission Plans',
                       style: TextStyle(
@@ -64,7 +62,7 @@ class _ComissionScreenState extends State<ComissionScreen> {
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.search_outlined,
                       size: 20,
                       color: Colors.red,
@@ -73,7 +71,7 @@ class _ComissionScreenState extends State<ComissionScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             CustomTab(
               items: _tabs,
               selectedTab: _selectedTab,
@@ -83,14 +81,14 @@ class _ComissionScreenState extends State<ComissionScreen> {
                 });
               },
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: SingleChildScrollView(
                 child: DataTable(
                   border: TableBorder.all(
                       color: Colors.black), // Adding border to DataTable
-                  columns: [
+                  columns: const [
                     DataColumn(
                         label: Text('Beneficiary Name',
                             style: TextStyle(color: Color(0xFFC63F3F)))),
@@ -110,7 +108,7 @@ class _ComissionScreenState extends State<ComissionScreen> {
                         label: Text('Bank No.',
                             style: TextStyle(color: Color(0xFFC63F3F)))),
                   ],
-                  rows: [
+                  rows: const [
                     DataRow(cells: [
                       DataCell(Text('John Doe')),
                       DataCell(Text('Account 1')),
@@ -124,7 +122,7 @@ class _ComissionScreenState extends State<ComissionScreen> {
                 ),
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
           ],
         ),
       ),
@@ -162,7 +160,7 @@ class CustomTab extends StatelessWidget {
               decoration: ShapeDecoration(
                 color: isSelected ? Color(0xFFC63F3F) : Colors.white,
                 shape: RoundedRectangleBorder(
-                  side: BorderSide(
+                  side: const BorderSide(
                     width: 1,
                     color: Color(0xFFC63F3F),
                   ),

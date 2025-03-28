@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:pin_code_fields/pin_code_fields.dart';
 
 class RegisterFundFormScreen extends StatefulWidget {
+  const RegisterFundFormScreen({super.key});
+
   @override
   _RegisterFormScreenState createState() => _RegisterFormScreenState();
 }
@@ -18,7 +20,7 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(titleText: 'Register'),
+      appBar: const CustomAppBar(titleText: 'Register'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(25.0),
         child: Form(
@@ -26,40 +28,40 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: <Widget>[
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               _buildTextField(
                 label: 'Mobile Number',
                 hintText: 'Enter Mobile Number',
                 keyboardType: TextInputType.phone,
                 onChanged: (value) => mobile = value,
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               _buildTextField(
                 label: 'Email',
                 hintText: 'Enter Email',
                 keyboardType: TextInputType.emailAddress,
                 onChanged: (value) => email = value,
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               _buildTextField(
                 label: 'Name',
                 hintText: 'Enter Name',
                 onChanged: (value) => name = value,
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               _buildTextField(
                 label: 'Address',
                 hintText: 'Enter Address',
                 onChanged: (value) => address = value,
               ),
-              SizedBox(height: 10.0),
+              const SizedBox(height: 10.0),
               _buildTextField(
                 label: 'Pincode',
                 hintText: 'Enter Pincode',
                 keyboardType: TextInputType.number,
                 onChanged: (value) => pincode = value,
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               CustomImageButton(
                 text: 'Submit',
                 imagePath: 'assets/intro/chevron-right.png',
@@ -84,16 +86,16 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
       children: [
         Text(
           label,
-          style: TextStyle(
+          style: const TextStyle(
             color: Color(0xFF263238),
             fontSize: 14,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w500,
           ),
         ),
-        SizedBox(height: 6.0),
+        const SizedBox(height: 6.0),
         Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.0),
+          padding: const EdgeInsets.symmetric(horizontal: 12.0),
           decoration: BoxDecoration(
             border: Border.all(color: Colors.grey),
             borderRadius: BorderRadius.circular(5.0),
@@ -129,7 +131,7 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
         context,
       );
     }
-    await Future.delayed(Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1));
     _showBillDialog(context);
   }
 
@@ -140,8 +142,8 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          titlePadding: EdgeInsets.all(8.0),
-          contentPadding: EdgeInsets.all(8.0),
+          titlePadding: const EdgeInsets.all(8.0),
+          contentPadding: const EdgeInsets.all(8.0),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15.0),
           ),
@@ -153,7 +155,7 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
                 borderRadius: BorderRadius.circular(12),
               ),
             ),
-            child: Center(
+            child: const Center(
               child: Text(
                 'Enter OTP',
                 style: TextStyle(
@@ -167,7 +169,7 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
           ),
           content: Container(
             width: double.infinity,
-            constraints: BoxConstraints(
+            constraints: const BoxConstraints(
               maxWidth: 800,
               minWidth: 300,
             ),
@@ -179,7 +181,7 @@ class _RegisterFormScreenState extends State<RegisterFundFormScreen> {
                   PinCodeTextField(
                     controller: _otpController,
                     appContext: context,
-                    pastedTextStyle: TextStyle(
+                    pastedTextStyle: const TextStyle(
                       color: Colors.white,
                       fontWeight: FontWeight.bold,
                     ),

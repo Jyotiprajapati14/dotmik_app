@@ -100,7 +100,7 @@ class _ReferScreenState extends State<ReferScreen> {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => ReferWorkScreen()));
+                                  builder: (context) => const ReferWorkScreen()));
                         },
                       ),
                     ],
@@ -109,7 +109,7 @@ class _ReferScreenState extends State<ReferScreen> {
               ),
               Container(
                 width: double.infinity,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(30),
@@ -130,7 +130,7 @@ class _ReferScreenState extends State<ReferScreen> {
                             screenHeight,
                             screenWidth,
                           ),
-                          SizedBox(
+                          const SizedBox(
                             width: 5,
                           ),
                           _buildInfoCard(
@@ -172,11 +172,11 @@ class _ReferScreenState extends State<ReferScreen> {
                             subject: '',
                           );
                         },
-                        child: BigCustomButton(
+                        child: const BigCustomButton(
                           title: 'Share to Invite',
                         ),
                       ),
-                      SizedBox(height: 30),
+                      const SizedBox(height: 30),
                     ],
                   ),
                 ),
@@ -198,7 +198,7 @@ class _ReferScreenState extends State<ReferScreen> {
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Colors.orange),
+          side: const BorderSide(width: 1, color: Colors.orange),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
@@ -209,7 +209,7 @@ class _ReferScreenState extends State<ReferScreen> {
           Text(
             title,
             style: TextStyle(
-              color: Color(0xFF242424),
+              color: const Color(0xFF242424),
               fontSize: screenHeight * 0.015,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w700,
@@ -219,7 +219,7 @@ class _ReferScreenState extends State<ReferScreen> {
           Text(
             value,
             style: TextStyle(
-              color: Color(0xFF242424),
+              color: const Color(0xFF242424),
               fontSize: screenHeight * 0.02,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
@@ -238,7 +238,7 @@ class _ReferScreenState extends State<ReferScreen> {
         Container(
           width: screenHeight * 0.04,
           height: screenHeight * 0.04,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.green,
           ),
@@ -273,11 +273,11 @@ class _ReferScreenState extends State<ReferScreen> {
             ),
           ],
         ),
-        Spacer(),
+        const Spacer(),
         Text(
           amount,
           style: TextStyle(
-            color: Color(0xFF34C759),
+            color: const Color(0xFF34C759),
             fontSize: screenHeight * 0.02,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,
@@ -317,7 +317,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
         body: SingleChildScrollView(
           child: Column(
             children: [
-              Center(
+              const Center(
                 child: Text(
                   'How it works',
                   style: TextStyle(
@@ -330,7 +330,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Padding(
@@ -355,7 +355,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 20,
               ),
               Container(
@@ -365,7 +365,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                 decoration: ShapeDecoration(
                   color: Colors.white,
                   shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 1, color: Color(0xFFC63F3F)),
+                    side: const BorderSide(width: 1, color: Color(0xFFC63F3F)),
                     borderRadius: BorderRadius.circular(15),
                   ),
                 ),
@@ -378,7 +378,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                         width: 1,
                         height: 1,
                         clipBehavior: Clip.antiAlias,
-                        decoration: BoxDecoration(),
+                        decoration: const BoxDecoration(),
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.center,
@@ -388,14 +388,14 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                               width: 1,
                               height: 1,
                               clipBehavior: Clip.antiAlias,
-                              decoration: BoxDecoration(),
+                              decoration: const BoxDecoration(),
                             ),
                           ],
                         ),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(
+                    const Padding(
+                      padding: EdgeInsets.only(
                           left: 30, top: 10, bottom: 10, right: 10),
                       child: Text(
                         'Note:',
@@ -410,7 +410,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                         ),
                       ),
                     ),
-                    Positioned(
+                    const Positioned(
                       left: 30,
                       top: 33,
                       child: SizedBox(
@@ -446,10 +446,10 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
             width: 24,
             height: 24,
             clipBehavior: Clip.antiAlias,
-            decoration: BoxDecoration(),
+            decoration: const BoxDecoration(),
             child: Image.asset("assets/images/iconamoon_profile.png"),
           ),
-          SizedBox(
+          const SizedBox(
             width: 20,
           ),
           Column(
@@ -458,7 +458,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
               Text(
                 title,
                 textAlign: TextAlign.left,
-                style: TextStyle(
+                style: const TextStyle(
                   color: Color(0xFF141414),
                   fontSize: 14,
                   fontFamily: 'KoHo',
@@ -467,7 +467,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                   letterSpacing: 0.50,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 5,
               ),
               Text.rich(
@@ -475,7 +475,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                   children: [
                     TextSpan(
                       text: subtitle1,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF919191),
                         fontSize: 10,
                         fontFamily: 'Poppins',
@@ -486,7 +486,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
                     ),
                     TextSpan(
                       text: subtitle2,
-                      style: TextStyle(
+                      style: const TextStyle(
                         color: Color(0xFF242424),
                         fontSize: 10,
                         fontFamily: 'Poppins',
@@ -516,7 +516,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
       decoration: ShapeDecoration(
         color: Colors.white,
         shape: RoundedRectangleBorder(
-          side: BorderSide(width: 1, color: Colors.orange),
+          side: const BorderSide(width: 1, color: Colors.orange),
           borderRadius: BorderRadius.circular(10),
         ),
       ),
@@ -527,7 +527,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
           Text(
             title,
             style: TextStyle(
-              color: Color(0xFF242424),
+              color: const Color(0xFF242424),
               fontSize: screenHeight * 0.015,
               fontFamily: 'Poppins',
               fontWeight: FontWeight.w700,
@@ -537,7 +537,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
           Text(
             value,
             style: TextStyle(
-              color: Color(0xFF242424),
+              color: const Color(0xFF242424),
               fontSize: screenHeight * 0.02,
               fontFamily: 'Inter',
               fontWeight: FontWeight.w700,
@@ -556,7 +556,7 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
         Container(
           width: screenHeight * 0.04,
           height: screenHeight * 0.04,
-          decoration: BoxDecoration(
+          decoration: const BoxDecoration(
             shape: BoxShape.circle,
             color: Colors.green,
           ),
@@ -591,11 +591,11 @@ class _ReferWorkScreenState extends State<ReferWorkScreen> {
             ),
           ],
         ),
-        Spacer(),
+        const Spacer(),
         Text(
           amount,
           style: TextStyle(
-            color: Color(0xFF34C759),
+            color: const Color(0xFF34C759),
             fontSize: screenHeight * 0.02,
             fontFamily: 'Poppins',
             fontWeight: FontWeight.w600,

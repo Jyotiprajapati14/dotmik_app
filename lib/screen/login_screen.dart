@@ -95,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           EdgeInsets.symmetric(horizontal: screenWidth * 0.1),
                       child: Column(
                         children: <Widget>[
-                          const SizedBox(height: 30),
+                          const SizedBox(height: 20),
                           Container(
                             child: Column(
                               children: <Widget>[
@@ -119,7 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   keyboardType: TextInputType.text,
                                   controller: emailController,
                                 ),
-                                SizedBox(height: screenHeight * 0.016),
+                                SizedBox(height: screenHeight * 0.015),
                                 CustomTextField(
                                   hintText: 'Enter your password',
                                   icon: Icons.lock_outline,
@@ -242,6 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                         ),
                                       ),
                                     ),
+                                     const SizedBox(height: 20),
                                   ],
                                 ),
                               ],

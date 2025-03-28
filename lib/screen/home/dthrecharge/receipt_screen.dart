@@ -1,6 +1,5 @@
 import 'package:dotmik_app/screen/home/home_bottombar_screen.dart';
 import 'package:dotmik_app/utils/Appbar/appbarUtils.dart';
-import 'package:dotmik_app/utils/customAppBar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -12,7 +11,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
   final String paymentMethod;
   final String operatorName;
 
-  DTHTransactionReceiptScreen({
+  const DTHTransactionReceiptScreen({
     required this.amount,
     required this.paymentStatus,
     required this.txnId,
@@ -24,7 +23,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: CustomAppBar(titleText: 'Receipt',),
+      appBar: const CustomAppBar(titleText: 'Receipt',),
       body: SingleChildScrollView(
         scrollDirection: Axis.vertical,
         child: Padding(
@@ -32,11 +31,11 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 50,
               ),
-              SizedBox(height: 20),
-              Center(
+              const SizedBox(height: 20),
+              const Center(
                 child: Text(
                   'Payment Success!',
                   textAlign: TextAlign.center,
@@ -49,10 +48,10 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
-              Center(
+              const Center(
                 child: Text.rich(
                   TextSpan(
                     children: [
@@ -81,7 +80,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               Container(
@@ -91,11 +90,11 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                     top: 8, left: 8, right: 8, bottom: 24),
                 clipBehavior: Clip.antiAlias,
                 decoration: ShapeDecoration(
-                  color: Color(0x26C63F3F),
+                  color: const Color(0x26C63F3F),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(16),
                   ),
-                  shadows: [
+                  shadows: const [
                     BoxShadow(
                       color: Color(0x1EAAAAAA),
                       blurRadius: 24,
@@ -116,7 +115,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(12),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
@@ -139,7 +138,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                         ],
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     _buildRow('Amount', amount),
@@ -148,7 +147,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                     _buildRow('Payment Type', paymentType),
                     _buildRow('Payment Method', paymentMethod),
                     _buildRow('Operator Name', operatorName),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     Center(
@@ -159,7 +158,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                             horizontal: 24, vertical: 12),
                         decoration: ShapeDecoration(
                           shape: RoundedRectangleBorder(
-                            side: BorderSide(
+                            side: const BorderSide(
                                 width: 1,
                                 color: Color.fromARGB(255, 188, 116, 111)),
                             borderRadius: BorderRadius.circular(6),
@@ -183,7 +182,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                               ),
                             ),
                             const SizedBox(width: 10),
-                            Text(
+                            const Text(
                               'Get PDF Receipt',
                               textAlign: TextAlign.center,
                               style: TextStyle(
@@ -201,7 +200,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               SizedBox(
@@ -211,11 +210,11 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(horizontal: 18, vertical: 20),
                   decoration: ShapeDecoration(
-                    color: Color(0xFFEBEBEB),
+                    color: const Color(0xFFEBEBEB),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24),
                     ),
-                    shadows: [
+                    shadows: const [
                       BoxShadow(
                         color: Color(0x1EAAAAAA),
                         blurRadius: 24,
@@ -224,7 +223,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                       )
                     ],
                   ),
-                  child: Column(
+                  child: const Column(
                     children: [
                       SizedBox(
                         height: 10,
@@ -280,7 +279,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 30,
               ),
               GestureDetector(
@@ -288,7 +287,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => HomeBottomNavBar(
+                          builder: (context) => const HomeBottomNavBar(
                               
                               )));
                 },
@@ -297,12 +296,12 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
                     width: 316,
                     height: 63,
                     decoration: ShapeDecoration(
-                      color: Color(0xFFC63F3F),
+                      color: const Color(0xFFC63F3F),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                     ),
-                    child: Center(
+                    child: const Center(
                       child: Text(
                         'Back to Home',
                         textAlign: TextAlign.center,
@@ -340,7 +339,7 @@ class DTHTransactionReceiptScreen extends StatelessWidget {
           ),
           Text(
             value,
-            style: TextStyle(
+            style: const TextStyle(
               fontWeight: FontWeight.w500,
               fontSize: 16,
             ),

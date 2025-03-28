@@ -1,8 +1,11 @@
 import 'package:dotmik_app/api/apiService.dart';
+import 'package:dotmik_app/screen/kyc/kycFormScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class KycPendingScreen extends StatefulWidget {
+  const KycPendingScreen({super.key});
+
   @override
   _KycPendingScreenState createState() => _KycPendingScreenState();
 }
@@ -10,12 +13,16 @@ class KycPendingScreen extends StatefulWidget {
 class _KycPendingScreenState extends State<KycPendingScreen> {
   final ScrollController _scrollController = ScrollController();
   bool _isButtonVisible = true;
+   void initState() {
+    super.initState();
+    //startKycStatusCheck(context); //  Auto Check Start करो
+  }
 
   void _scrollToBottomAndFetch() async {
     // Animate scroll to the bottom
     await _scrollController.animateTo(
       _scrollController.position.maxScrollExtent,
-      duration: Duration(seconds: 1),
+      duration: const Duration(seconds: 1),
       curve: Curves.easeInOut,
     );
 
@@ -50,7 +57,7 @@ class _KycPendingScreenState extends State<KycPendingScreen> {
                   Container(
                     width: MediaQuery.of(context).size.width * 0.8,
                     height: MediaQuery.of(context).size.height * 0.3 , // Keep it proportional
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         image: AssetImage('assets/intro/cuate (1).png'), // Your image asset
@@ -58,9 +65,9 @@ class _KycPendingScreenState extends State<KycPendingScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   // Display the KYC Pending text
-                  Text(
+                  const Text(
                     'KYC Pending',
                     style: TextStyle(
                       fontSize: 28,
@@ -68,7 +75,7 @@ class _KycPendingScreenState extends State<KycPendingScreen> {
                       color: Colors.redAccent,
                     ),
                   ),
-                  SizedBox(height: 10),
+                  const SizedBox(height: 10),
                   Text(
                     'Your KYC process is still pending. Please complete it to proceed.',
                     textAlign: TextAlign.center,
@@ -77,7 +84,7 @@ class _KycPendingScreenState extends State<KycPendingScreen> {
                       color: Colors.grey[600],
                     ),
                   ),
-                  SizedBox(height: 100), // Space for the button
+                  const SizedBox(height: 100), // Space for the button
                 ],
               ),
             ),
@@ -90,11 +97,16 @@ class _KycPendingScreenState extends State<KycPendingScreen> {
             left: MediaQuery.of(context).size.width / 2 - 30, // Center horizontally
             child: FloatingActionButton(
               onPressed: () {
-                _scrollToBottomAndFetch();
-                setState(() {
-                  _isButtonVisible = false;
-                });
-              },
+    _scrollToBottomAndFetch();
+    setState(() {
+      _isButtonVisible = false;
+    });
+    // Now Navigate to KYC Form
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const KycFormScreen(initialStep: 1)),
+    );
+  },
               child: Icon(Icons.arrow_downward),
               backgroundColor: Colors.redAccent,
             ),

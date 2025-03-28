@@ -32,53 +32,55 @@ class IntroductionState extends State<Introduction> {
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
 
-    return Padding(
-      padding: const EdgeInsets.only(top: 40, left: 40),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          ShaderMask(
-            shaderCallback: (Rect bounds) {
-              return ui.Gradient.linear(
-                Offset(0, bounds.top),
-                Offset(0, bounds.bottom),
-                [Colors.black, Color(0xFFC63F3F)],
-              );
-            },
-            child: Text(
-              widget.title,
-              textAlign: TextAlign.start,
-              style: IntroductionUtils.getTitleTextStyle(context),
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.only(top: 35, left: 40),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ShaderMask(
+              shaderCallback: (Rect bounds) {
+                return ui.Gradient.linear(
+                  Offset(0, bounds.top),
+                  Offset(0, bounds.bottom),
+                  [Colors.black, Color(0xFFC63F3F)],
+                );
+              },
+              child: Text(
+                widget.title,
+                textAlign: TextAlign.start,
+                style: IntroductionUtils.getTitleTextStyle(context),
+              ),
             ),
-          ),
-          Text(
-            widget.subTitle,
-            textAlign: TextAlign.start,
-            style: IntroductionUtils.getSubTitleTextStyle(context),
-          ),
-          SizedBox(
-            width: 0.6 * screenWidth,
-            child: Text(
-              widget.detail,
+            Text(
+              widget.subTitle,
               textAlign: TextAlign.start,
-              style: IntroductionUtils.getDetailTextStyle(context),
+              style: IntroductionUtils.getSubTitleTextStyle(context),
             ),
-          ),
-          SizedBox(
-            height: screenWidth * 0.8, 
-            width: screenWidth * 0.6,
-            child: Padding(
-              padding: const EdgeInsets.only( left:18),
-              child: Center(
-                child: Image(
-                  image: AssetImage(widget.imageUrl),
-                  fit: BoxFit.fill,
+            SizedBox(
+              width: 0.6 * screenWidth,
+              child: Text(
+                widget.detail,
+                textAlign: TextAlign.start,
+                style: IntroductionUtils.getDetailTextStyle(context),
+              ),
+            ),
+            SizedBox(
+              height: screenWidth * 0.8, 
+              width: screenWidth * 0.6,
+              child: Padding(
+                padding: const EdgeInsets.only( left:16),
+                child: Center(
+                  child: Image(
+                    image: AssetImage(widget.imageUrl),
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
