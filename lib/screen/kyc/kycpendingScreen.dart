@@ -106,6 +106,10 @@ class _KycPendingScreenState extends State<KycPendingScreen> {
       context,
       MaterialPageRoute(builder: (context) => const KycFormScreen(initialStep: 1)),
     );
+     Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const KycFormScreen(initialStep: 2)),
+    );
   },
               child: Icon(Icons.arrow_downward),
               backgroundColor: Colors.redAccent,

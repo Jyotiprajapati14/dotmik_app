@@ -197,7 +197,7 @@ Future<void> logInOtp(String otpCode, BuildContext context) async {
             print("Navigating to KYC Form...");
             Navigator.pushReplacement(
               context,
-              MaterialPageRoute(builder: (context) => KycFormScreen(initialStep: 1)),
+              MaterialPageRoute(builder: (context) => const KycFormScreen(initialStep: 1)),
             );
           } else {
             print("Navigating to KYC Pending...");
@@ -224,7 +224,7 @@ Future<void> logInOtp(String otpCode, BuildContext context) async {
 }
 
 void startKycStatusCheck(BuildContext context) {
-  Timer.periodic(Duration(seconds: 60), (timer) async {
+  Timer.periodic(const Duration(seconds: 60), (timer) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     String? token = prefs.getString('token');
 
@@ -243,7 +243,7 @@ void startKycStatusCheck(BuildContext context) {
         timer.cancel(); //  अगर KYC Approve हो गया तो Timer रोक दो
         Navigator.pushReplacement(
           context,
-          MaterialPageRoute(builder: (context) => KycFormScreen(initialStep: 1)),
+          MaterialPageRoute(builder: (context) => const KycFormScreen(initialStep: 1)),
         );
       }
     }
@@ -261,143 +261,251 @@ void startKycStatusCheck(BuildContext context) {
     }
   }
 
-  Future<void> fetchDashboard(BuildContext context, String token, String key) async {
-    final url = Uri.parse('$baseUrl/dashboard');
+  
+  // Future<void> fetchDashboard(BuildContext context, String token, String key) async {
+  //   final url = Uri.parse('$baseUrl/dashboard');
 
-    try {
-      // Create a GET request with headers
-      final response = await http.get(
-        url,
-        headers: {
-          'token': token, // Add the token to headers
-          'key': key, // Add the key to headers
-        },
+  //   try {
+  //     // Create a GET request with headers
+  //     final response = await http.get(
+  //       url,
+  //       headers: {
+  //         'token': token, // Add the token to headers
+  //         'key': key, // Add the key to headers
+  //       },
+  //     );
+  //   print(response.body);
+  //     // Check if the response status is OK (200)
+  //     if (response.statusCode == 200) {
+  //       final responseBody = response.body;
+
+  //       // Parse the response body
+  //       final data = json.decode(responseBody);
+
+  //       // Save the entire response data in SharedPreferences
+  //       SharedPreferences prefs = await SharedPreferences.getInstance();
+  //       await prefs.setString('responseData', responseBody);
+  //       String activity = data['activity'];
+  //       String message;
+
+  //       // Navigate based on the activity type
+  //       switch (activity) {
+  //         case 'kyc_form':
+  //           message = 'You need to complete the KYC form.';
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => const KycFormScreen(initialStep: 1),
+  //             ),
+  //           );
+  //           break;
+  //         case 'kyc_phase2':
+  //           message = 'Proceed to KYC Phase 2.';
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => const KycFormScreen(initialStep: 2),
+  //             ),
+  //           );
+  //           break;
+  //         case 'kyc_pending':
+  //           message = 'KYC process is still pending.';
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => KycPendingScreen(),
+  //             ),
+  //           );
+  //           break;
+  //         case 'dashboard':
+  //           message = 'KYC process completed successfully.';
+  //           Navigator.push(
+  //             // ignore: use_build_context_synchronously
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => const HomeBottomNavBar(),
+  //             ),
+  //           );
+  //           break;
+  //         default:
+  //           message = 'Unknown status: $activity';
+  //           break;
+  //       }
+  //     }
+  //     else if (response.statusCode == 422) {
+  //       final responseBody = response.body;
+
+  //       // Parse the response body
+  //       final data = json.decode(responseBody);
+
+  //       // Save the entire response data in SharedPreferences
+  //       SharedPreferences prefs = await SharedPreferences.getInstance();
+  //       await prefs.setString('responseData', responseBody);
+  //       String activity = data['activity'];
+  //       String message;
+
+  //       // Navigate based on the activity type
+  //       switch (activity) {
+  //         case 'kyc_form':
+  //           message = 'You need to complete the KYC form.';
+  //           Navigator.push(
+  //             // ignore: use_build_context_synchronously
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => KycFormScreen(initialStep: 1),
+  //             ),
+  //           );
+  //           break;
+  //         case 'kyc_phase2':
+  //           message = 'Proceed to KYC Phase 2.';
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => KycFormScreen(initialStep: 2),
+  //             ),
+  //           );
+  //           break;
+  //         case 'kyc_pending':
+  //           message = 'KYC process is still pending.';
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => KycPendingScreen(),
+  //             ),
+  //           );
+  //           break;
+  //         case 'dashboard':
+  //           message = 'KYC process completed successfully.';
+  //           Navigator.push(
+  //             context,
+  //             MaterialPageRoute(
+  //               builder: (context) => HomeBottomNavBar(),
+  //             ),
+  //           );
+  //           break;
+  //         default:
+  //           message = 'Unknown status: $activity';
+  //           break;
+  //       }
+  //     }
+  //     else {
+  //       // If the response status is not OK, navigate to LoginScreen
+  //       Navigator.pushReplacement(
+  //         context,
+  //         MaterialPageRoute(
+  //           builder: (context) => const LoginScreen(),
+  //         ),
+  //       );
+  //     }
+  //   } catch (e) {
+  //     // Handle any errors and navigate to LoginScreen
+  //     Navigator.pushReplacement(
+  //       context,
+  //       MaterialPageRoute(
+  //         builder: (context) => const LoginScreen(),
+  //       ),
+  //     );
+  //   }
+  // }
+Future<void> fetchDashboard(BuildContext context, String token, String key) async {
+  final url = Uri.parse('$baseUrl/dashboard');
+
+  try {
+    final response = await http.get(
+      url,
+      headers: {
+        'token': token,
+        'key': key,
+      },
+    );
+
+    print("Dashboard API Response: ${response.body}");
+
+    if (response.statusCode == 200) {
+      final data = json.decode(response.body);
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      await prefs.setString('responseData', response.body);
+
+      String activity = data['activity'];
+      String message;
+
+      switch (activity) {
+        case 'kyc_form':
+          message = '⚠️ Do your profile KYC!';
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message), backgroundColor: Colors.orange),
+          );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const KycFormScreen(initialStep: 1),
+            ),
+          );
+          break;
+
+        case 'kyc_phase2':
+          message = '⚠️ Complete your second step of KYC!';
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message), backgroundColor: Colors.orange),
+          );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const KycFormScreen(initialStep: 2),
+            ),
+          );
+          break;
+
+        case 'pending':
+          message = '⏳ Your request is not approved yet. Please wait for admin approval!';
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(message), backgroundColor: Colors.blue),
+          );
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => KycPendingScreen(),
+            ),
+          );
+          break;
+
+        case 'dashboard':
+          if (data['data']['father_name'] != null &&
+              data['data']['outlet'] != null &&
+              data['data']['outlet_address'] != null) {
+            message = '✅ KYC Verified! Redirecting to Dashboard...';
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(message), backgroundColor: Colors.green),
+            );
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeBottomNavBar()),
+              (Route<dynamic> route) => false,
+            );
+          } else {
+            message = '❌ Please Complete All KYC Details!';
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(message), backgroundColor: Colors.red),
+            );
+          }
+          break;
+
+        default:
+          message = '⚠️ Unknown Status: $activity';
+          print("⚠️ Unknown Activity: $activity");
+          break;
+      }
+    } else if (response.statusCode == 401) {
+      // Token ya key galat hai toh login page pe bhej do
+      print("❌ Invalid Token/Key! Redirecting to Login...");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginScreen(),
+        ),
       );
-    print(response.body);
-      // Check if the response status is OK (200)
-      if (response.statusCode == 200) {
-        final responseBody = response.body;
-
-        // Parse the response body
-        final data = json.decode(responseBody);
-
-        // Save the entire response data in SharedPreferences
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('responseData', responseBody);
-        String activity = data['activity'];
-        String message;
-
-        // Navigate based on the activity type
-        switch (activity) {
-          case 'kyc_form':
-            message = 'You need to complete the KYC form.';
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const KycFormScreen(initialStep: 1),
-              ),
-            );
-            break;
-          case 'kyc_phase2':
-            message = 'Proceed to KYC Phase 2.';
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const KycFormScreen(initialStep: 2),
-              ),
-            );
-            break;
-          case 'kyc_pending':
-            message = 'KYC process is still pending.';
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => KycPendingScreen(),
-              ),
-            );
-            break;
-          case 'dashboard':
-            message = 'KYC process completed successfully.';
-            Navigator.push(
-              // ignore: use_build_context_synchronously
-              context,
-              MaterialPageRoute(
-                builder: (context) => const HomeBottomNavBar(),
-              ),
-            );
-            break;
-          default:
-            message = 'Unknown status: $activity';
-            break;
-        }
-      }
-      else if (response.statusCode == 422) {
-        final responseBody = response.body;
-
-        // Parse the response body
-        final data = json.decode(responseBody);
-
-        // Save the entire response data in SharedPreferences
-        SharedPreferences prefs = await SharedPreferences.getInstance();
-        await prefs.setString('responseData', responseBody);
-        String activity = data['activity'];
-        String message;
-
-        // Navigate based on the activity type
-        switch (activity) {
-          case 'kyc_form':
-            message = 'You need to complete the KYC form.';
-            Navigator.push(
-              // ignore: use_build_context_synchronously
-              context,
-              MaterialPageRoute(
-                builder: (context) => KycFormScreen(initialStep: 1),
-              ),
-            );
-            break;
-          case 'kyc_phase2':
-            message = 'Proceed to KYC Phase 2.';
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => KycFormScreen(initialStep: 2),
-              ),
-            );
-            break;
-          case 'kyc_pending':
-            message = 'KYC process is still pending.';
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => KycPendingScreen(),
-              ),
-            );
-            break;
-          case 'dashboard':
-            message = 'KYC process completed successfully.';
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => HomeBottomNavBar(),
-              ),
-            );
-            break;
-          default:
-            message = 'Unknown status: $activity';
-            break;
-        }
-      }
-      else {
-        // If the response status is not OK, navigate to LoginScreen
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const LoginScreen(),
-          ),
-        );
-      }
-    } catch (e) {
-      // Handle any errors and navigate to LoginScreen
+    } else {
+      print("❌ API Response Error: ${response.statusCode}");
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
@@ -405,7 +513,44 @@ void startKycStatusCheck(BuildContext context) {
         ),
       );
     }
+  } catch (e) {
+    print("❌ Error Fetching Dashboard: $e");
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const LoginScreen(),
+      ),
+    );
   }
+}
+
+
+
+//  KYC Phase 2 Check Function
+void checkKycPhaseTwo(BuildContext context) async {
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  String? token = prefs.getString('token');
+
+  final url = Uri.parse('$baseUrl/user/checkKycStatus');
+  var response = await http.get(url, headers: {
+    "Authorization": "Bearer $token",
+  });
+
+  final data = jsonDecode(response.body);
+  print("🔍 KYC Status Check: $data");
+
+  if (data['status'] == 'SUCCESS') {
+    String activity = data['activity'] ?? '';
+    if (activity == 'kyc_phase2') {
+      print("🚀 Redirecting to KYC Phase 2...");
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => KycFormScreen(initialStep: 2)),
+      );
+    }
+  }
+}
+
 
   Future<void> checkAuth(BuildContext context) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

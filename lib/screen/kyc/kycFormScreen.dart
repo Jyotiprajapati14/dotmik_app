@@ -131,24 +131,6 @@ class _MultiStepFormState extends State<MultiStepForm> {
     });
   }
 
-  // void _nextStep() async {
-  //   if (_currentStep == 1) {
-  //     await apiService.kycphaseOne(
-  //       emailController.text,
-  //       mobileController.text,
-  //       accountController.text,
-  //       panController.text,
-  //       aadharController.text,
-  //       ifscController.text,
-  //     );
-  //     // Show popup on step 0
-  //     _showBillDialog(context);
-  //   } else {
-  //     setState(() {
-  //       _currentStep++;
-  //     });
-  //   }
-  // }
    Future <void> _nextStep() async {
     if (_currentStep == 1) {
       setState(() {

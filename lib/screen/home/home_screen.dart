@@ -33,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     debugDataKeys(widget.data['data']);
     debugCategorychange(widget.data['data']);
   }
-
+  
   void debugDataKeys(Map<dynamic, dynamic> data) {
     if (data != null) {
       data.forEach((key, value) {});
